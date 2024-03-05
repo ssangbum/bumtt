@@ -7,7 +7,7 @@
     <title>로그인</title>
     <link rel="stylesheet" th:href="@{/css/common.css}">
     <link rel="stylesheet" th:href="@{/css/login.css }">
-    <link rel="javascript" th:href="@{/javascript/login.js }">
+    <script th:src="@{/javascript/login.js}" defer></script>
 </head>
 <body>
     <div class="header" th:replace="~{/common/header::header}"></div>
@@ -30,7 +30,7 @@
         <ul class="find-box">
             <li class="find-box-title"><a>아이디 찾기</a></li>
             <li class="find-box-title"><a>비밀번호 재설정</a></li>
-            <li class="find-box-title"><a>회원가입</a></li>
+            <li class="find-box-title"><a th:href="@{/user/signUp}">회원가입</a></li>
         </ul>
         <div class="other-service-box">
             <span class="left-bar"></span>
@@ -41,9 +41,7 @@
             <img class="kakao-login" id="kakao-login" th:src="@{../images/kakaoIcon.png}" alt="">
             <img class="naver-login" id="naver-login" th:src="@{../images/naverIcon.png}" alt="">
         </div>
-        <div id="error-message" class="error-message"></div>
-    </div>
 
-    <script th:src="@{/javascript/login.js}"></script>
+    </div>
 </body>
 </html>

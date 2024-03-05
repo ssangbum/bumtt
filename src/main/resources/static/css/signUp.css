@@ -12,14 +12,15 @@ body {
     height: 100vh;
 }
 
-.login-title {
-    color: white;
-    font-size: 32px;
-    font-weight: 500;
-    margin: 50px 0 50px 0;
+h1 {
+    display: block;
+    font-size: 28px;
+    font-weight: bold;
+    float: left;
+    margin: 0;
 }
 
-.login-container {
+.signup-container {
     background-color: #252525;
     margin: 80px auto;
     overflow: hidden;
@@ -29,18 +30,18 @@ body {
     height: 751px;
 }
 
-.login-box {
-    float: left;
+.signup-title-box {
+    padding: 30px 40px;
+    height: 115px;
+}
+
+.signup-box {
     width: 100%;
     padding: 0 40px;
 }
 
-.login-container h2 {
-    text-align: center;
-}
-
 .input-group {
-    margin-bottom: 15px;
+    margin: 20px 0 15px 0 ;
 }
 
 .input-group input {
@@ -54,15 +55,22 @@ body {
     background-color: #2F2F2F;
     appearance: none;
     font-family: NotoSans, sans-serif;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
     font-weight: bold;
 }
 
-.login-submit-button {
+.input-group h4 {
+    margin: 0 0 35px 0;
+    color: #8E8E8F;
+    font-size: 14px;
+
+}
+
+.signup-submit-button {
     display: block;
     width: 100%;
     height: 60px;
-    background: #40E15A;
+    background: #717171;
     font-size: 18px;
     color: #FFFFFF;
     border-radius: 30px;
@@ -71,42 +79,11 @@ body {
     font-weight: bold;
 }
 
-.find-box {
-    display: block;
-    text-align: center;
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.find-box-title {
-    margin: 30px 0 30px 0;
-    display: inline-block;
-    padding: 0;
-    cursor: pointer;
-}
-
-ul>.find-box-title::after{
-    content: "|";
-    float: right;
-    display: block;
-    color: #a5a5a5;
-}
-
-ul>.find-box-title:last-child::after{
-    content: "";
-    color: #a5a5a5;
-}
-
-ul>.find-box-title>a{
-    padding: 0 10px;
-    color: #a5a5a5;
-    text-align: center;
-}
-
 .other-service-box {
     display: block;
     position: relative;
+    text-align: center;
+    margin: 50px 0 0 0;
 }
 
 .left-bar {
@@ -133,27 +110,21 @@ ul>.find-box-title>a{
     float: right;
 }
 
-.sns-login-box {
+.sns-signup-box {
     display: block;
     text-align: center;
 }
 
-.kakao-login {
+.kakao-signup {
     width: 60px;
     height: 60px;
     margin: 10px 10px;
     cursor: pointer;
 }
 
-.naver-login {
+.naver-signup {
     width: 60px;
     height: 60px;
     margin: 10px 10px;
     cursor: pointer;
-}
-
-.error-message {
-    color: #ff0000;
-    font-size: 14px;
-    margin-top: 10px;
 }

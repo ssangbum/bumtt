@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" lang="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원가입</title>
+    <link rel="stylesheet" th:href="@{/css/common.css}">
+    <link rel="stylesheet" th:href="@{/css/signUp.css }">
+    <script th:src="@{/javascript/signUp.js}" defer></script>
+</head>
+<body>
+    <div class="header" th:replace="~{/common/header::header}"></div>
+    <div class="signup-container">
+        <div class="signup-title-box">
+            <h1 th:style="${'color:white'}">이메일과 비밀번호</h1><h1 th:style="${'color:#8E8E8F'}">만으로</h1>
+            <h1 th:style="${'color:white'}">BumTT를 즐길 수 </h1><h1 th:style="${'color:#8E8E8F'}">있어요!</h1>
+        </div>
+        <div class="signup-box">
+            <form id="signup-form" action="/user/signUp" method="post" name="signUpForm">
+                <div class="input-group">
+                    <label>
+                        <input type="text" id="userEmail" name="userEmail" placeholder="bumtt@example.com" required>
+                    </label>
+                    <h4>&#9432; 로그인, 비밀번호 찾기에 사용되니 정확한 이메일을 입력해 주세요.</h4>
+                    <label>
+                        <input type="password" id="userPwd" name="userPwd" placeholder="비밀번호 설정" required>
+                    </label>
+                    <h4>&#9432; 비밀번호는 8~20자 이내로 영문 대소문자, 숫자, 특수문자 중 3가지 이상 혼용하여 입력해 주세요.</h4>
+                </div>
+                <button class="signup-submit-button" id="signup-submit-button" type="button" onclick="signUpUser">BumTT 회원가입</button>
+            </form>
+        </div>
+        <div class="other-service-box">
+            <span class="left-bar"></span>
+            <h2 tabindex="0" class="other-service-title">또 다른 서비스 계정으로 가입</h2>
+            <span class="right-bar"></span>
+        </div>
+        <div class="sns-signup-box">
+            <img class="kakao-signup" id="kakao-signup" th:src="@{../images/kakaoIcon.png}" alt="">
+            <img class="naver-signup" id="naver-signup" th:src="@{../images/naverIcon.png}" alt="">
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,52 @@
+.navbar {
+    font-family: Arial, sans-serif;
+    background-color: #141517;
+    height: 60px;
+    width: 100%;
+    padding: 5px 80px 0 80px;
+    display: flex;
+}
+
+.content-bar {
+    float: left;
+}
+
+.home-logo {
+    width: 74px;
+    height: 51px;
+    float: left;
+}
+
+.nav-li-inline {
+    list-style: none;
+    float: left;
+}
+
+.nav-li {
+    display: inline;
+    padding: 0 10px 0 10px;
+}
+
+.nav-li>a {
+    text-decoration: none;
+    padding: 0 10px;
+    color: #a5a5a5;
+    text-align: center;
+}
+
+.search-bar {
+    width: 950px;
+    border: 1px solid red;
+    padding-top: 10px;
+}
+
+.search-content {
+    float: right;
+    width: 30px;
+    height: 30px;
+}
+
+.user-bar {
+    float: left;
+
+}

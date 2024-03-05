@@ -1,0 +1,158 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #1B1B1B;
+    margin: 0;
+    padding: 0;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.login-title {
+    color: white;
+    font-size: 32px;
+    font-weight: 500;
+    margin: 50px 0 50px 0;
+}
+
+.login-container {
+    background-color: #252525;
+    margin: 80px auto;
+    overflow: hidden;
+    /*padding: 40px 0;*/
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 560px;
+    height: 751px;
+}
+
+.login-box {
+    float: left;
+    width: 100%;
+    padding: 0 40px;
+}
+
+.login-container h2 {
+    text-align: center;
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+.input-group input {
+    width: 100%;
+    height: 53px;
+    font-size: 15px;
+    padding: 0 20px;
+    border-radius: 5px;
+    border: 0;
+    color: #FFF;
+    background-color: #2F2F2F;
+    appearance: none;
+    font-family: NotoSans, sans-serif;
+    margin-bottom: 15px;
+}
+
+.login-submit-button {
+    display: block;
+    width: 100%;
+    height: 60px;
+    background: #40E15A;
+    font-size: 18px;
+    color: #FFFFFF;
+    border-radius: 30px;
+    border: 0;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.find-box {
+    display: block;
+    text-align: center;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.find-box-title {
+    margin: 30px 0 30px 0;
+    display: inline-block;
+    padding: 0;
+    cursor: pointer;
+}
+
+ul>.find-box-title::after{
+    content: "|";
+    float: right;
+    display: block;
+    color: #a5a5a5;
+}
+
+ul>.find-box-title:last-child::after{
+    content: "";
+    color: #a5a5a5;
+}
+
+ul>.find-box-title>a{
+    padding: 0 10px;
+    color: #a5a5a5;
+    text-align: center;
+}
+
+.other-service-box {
+    display: block;
+    position: relative;
+}
+
+.left-bar {
+    left: 10%;
+    position: absolute;
+    display: block;
+    top: 14px;
+    width: 15%;
+    border-bottom: 1px solid #2f2f2f;
+}
+
+.other-service-title {
+    font-size: 18px;
+    color: #a5a5a5;
+}
+
+.right-bar {
+    right: 10%;
+    position: absolute;
+    display: block;
+    top: 14px;
+    width: 15%;
+    border-bottom: 1px solid #2f2f2f;
+    float: right;
+}
+
+.sns-login-box {
+    display: block;
+    text-align: center;
+}
+
+.kakao-login {
+    width: 60px;
+    height: 60px;
+    margin: 10px 10px;
+    cursor: pointer;
+}
+
+.naver-login {
+    width: 60px;
+    height: 60px;
+    margin: 10px 10px;
+    cursor: pointer;
+}
+
+.error-message {
+    color: #ff0000;
+    font-size: 14px;
+    margin-top: 10px;
+}

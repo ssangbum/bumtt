@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sangbum.bumtt.user.model.dao.UserDAO">
+    <resultMap id="userResultMap" type="com.sangbum.bumtt.user.model.dto.UserDTO">
+        <id property="userNo" column="USER_NO"/>
+        <result property="userType" column="USER_TYPE"/>
+        <result property="userName" column="USER_NAME"/>
+        <result property="userEmail" column="USER_EMAIL"/>
+        <result property="userBirth" column="USER_BIRTH"/>
+        <result property="userBuyTicketYn" column="USER_BUY_TICKET_YN"/>
+        <result property="userCategoryName" column="USER_CATEGORY_NAME"/>
+    </resultMap>
+
+    <resultMap id="basicResultMap" type="com.sangbum.bumtt.user.model.dto.UserDTO">
+        <id property="userNo" column="USER_NO"/>
+        <result property="userType" column="USER_TYPE"/>
+        <result property="userName" column="USER_NAME"/>
+        <result property="userEmail" column="USER_EMAIL"/>
+        <result property="userBirth" column="USER_BIRTH"/>
+    </resultMap>
+
+
+    <select id="findByUsername" resultMap="userResultMap">
+        SELECT
+            A.USER_NO,
+            A.USER_TYPE,
+            A.USER_NAME,
+            A.USER_EMAIL,
+            A.USER_BIRTH,
+            A.USER_BUY_TICKET_YN,
+            B.USER_CATEGORY_NAME
+        FROM TBL_USER A
+        JOIN TBL_USER_CATEGORY B ON (A.USER_CATEGORY_NO = B.USER_CATEGORY_NO)
+        WHERE A.USER_NAME = #{ username }
+    </select>
+
+    <select id="findByEmail" resultMap="basicResultMap">
+        SELECT
+            A.USER_NO,
+            A.USER_NAME,
+            A.USER_EMAIL,
+            A.USER_BIRTH,
+            A.USER_TYPE,
+            B.USER_CATEGORY_NAME
+        FROM TBL_USER A
+        JOIN TBL_USER_CATEGORY B ON (A.USER_CATEGORY_NO = B.USER_CATEGORY_NO)
+        WHERE A.USER_EMAIL = #{ email }
+    </select>
+
+    <insert id="saveOAuth2User" parameterType="com.sangbum.bumtt.user.model.dto.UserDTO">
+        INSERT
+          INTO TBL_USER A
+          (
+            A.USER_NO
+          , A.USER_NAME
+          , A.USER_EMAIL
+          , A.USER_BIRTH
+          , A.USER_PHONE
+          , A.USER_BUY_TICKET_YN
+          , A.USER_CATEGORY_NO
+          , A.USER_TYPE
+          )
+          VALUES
+          (
+            SEQ_USER_NO.NEXTVAL
+          , #{ userName }
+          , #{ userEmail }
+          , #{ userBirth }
+          , #{ userPhone }
+          , 'N'
+          , 2
+          , #{ userType }
+          )
+    </insert>
+
+    <update id="updateOAuth2User" parameterType="com.sangbum.bumtt.user.model.dto.UserDTO">
+        UPDATE
+               TBL_USER A
+           SET A.USER_NAME = #{ userName }
+             , A.USER_PHONE = #{ userPhone }
+         WHERE A.USER_EMAIL = #{ userEmail }
+    </update>
+
+</mapper>

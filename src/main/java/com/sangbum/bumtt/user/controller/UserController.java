@@ -9,5 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class UserController {
 
     @GetMapping("/login")
-    public void login() {}
+    public String loginPage() {
+
+        return "/user/login";
+    }
+
 }

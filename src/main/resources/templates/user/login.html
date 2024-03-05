@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" lang="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>로그인</title>
+    <link rel="stylesheet" th:href="@{/css/common.css}">
+    <link rel="stylesheet" th:href="@{/css/login.css }">
+    <link rel="javascript" th:href="@{/javascript/login.js }">
+</head>
+<body>
+    <div class="header" th:replace="~{/common/header::header}"></div>
+    <div class="login-container">
+        <h2 class="login-title">로그인</h2>
+        <div class="login-box">
+            <form id="login-form" action="/user/login" method="post" name="loginForm">
+                <div class="input-group">
+                    <label>
+                        <input type="text" id="username" name="username" placeholder="이메일 주소" required>
+                    </label>
+                    <label>
+                        <input type="password" id="password" name="password" placeholder="비밀번호" required>
+                    </label>
+                </div>
+
+                <button class="login-submit-button" type="submit">로그인</button>
+            </form>
+        </div>
+        <ul class="find-box">
+            <li class="find-box-title"><a>아이디 찾기</a></li>
+            <li class="find-box-title"><a>비밀번호 재설정</a></li>
+            <li class="find-box-title"><a>회원가입</a></li>
+        </ul>
+        <div class="other-service-box">
+            <span class="left-bar"></span>
+            <h2 tabindex="0" class="other-service-title">또 다른 서비스 계정으로 로그인</h2>
+            <span class="right-bar"></span>
+        </div>
+        <div class="sns-login-box">
+            <img class="kakao-login" id="kakao-login" th:src="@{../images/kakaoIcon.png}" alt="">
+            <img class="naver-login" id="naver-login" th:src="@{../images/naverIcon.png}" alt="">
+        </div>
+        <div id="error-message" class="error-message"></div>
+    </div>
+
+    <script th:src="@{/javascript/login.js}"></script>
+</body>
+</html>

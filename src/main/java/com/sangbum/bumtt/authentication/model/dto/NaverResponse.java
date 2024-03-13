@@ -36,11 +36,13 @@ public class NaverResponse implements OAuth2Response{
 
     @Override
     public String getMobile() {
+
         return attribute.get("mobile").toString().replace("-", "");
     }
 
     @Override
     public String getBirthYear() {
+
         return attribute.get("birthyear").toString();
     }
 }

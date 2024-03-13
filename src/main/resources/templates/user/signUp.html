@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>회원가입</title>
+    <title>BumTT</title>
     <link rel="stylesheet" th:href="@{/css/common.css}">
     <link rel="stylesheet" th:href="@{/css/signUp.css }">
     <script th:src="@{/javascript/signUp.js}" defer></script>
@@ -20,7 +20,7 @@
             <form id="signup-form" action="/user/signUp" method="post" name="signUpForm">
                 <div class="input-group">
                     <label>
-                        <input type="text" id="userEmail" name="userEmail" placeholder="bumtt@example.com" required>
+                        <input type="text" id="userName" name="userName" placeholder="bumtt@example.com" required>
                     </label>
                     <h4>&#9432; 로그인, 비밀번호 찾기에 사용되니 정확한 이메일을 입력해 주세요.</h4>
                     <label>
@@ -28,7 +28,7 @@
                     </label>
                     <h4>&#9432; 비밀번호는 8~20자 이내로 영문 대소문자, 숫자, 특수문자 중 3가지 이상 혼용하여 입력해 주세요.</h4>
                 </div>
-                <button class="signup-submit-button" id="signup-submit-button" type="button" onclick="signUpUser">BumTT 회원가입</button>
+                <button class="signup-submit-button" id="signup-submit-button" type="button" onclick="signUpUser()">BumTT 회원가입</button>
             </form>
         </div>
         <div class="other-service-box">

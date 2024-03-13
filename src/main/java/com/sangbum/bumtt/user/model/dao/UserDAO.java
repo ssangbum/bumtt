@@ -6,13 +6,11 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface UserDAO {
 
-    UserDTO findByUsername(String username);
+    UserDTO findUserByUsername(String username);
 
-    UserDTO findUser();
+    int createUser(UserDTO userDTO);
 
-    UserDTO findByEmail(String email);
+    int createOAuth2User(UserDTO userDTO);
 
-    int saveOAuth2User(UserDTO newUser);
-
-    int updateOAuth2User(UserDTO existData);
+    int updateOAuth2User(UserDTO userDTO);
 }

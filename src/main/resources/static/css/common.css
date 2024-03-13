@@ -34,8 +34,15 @@
     text-align: center;
 }
 
+.nav-li>span {
+    text-decoration: none;
+    padding: 0 10px;
+    color: #a5a5a5;
+    text-align: center;
+}
+
 .search-bar {
-    width: 950px;
+    width: 800px;
     border: 1px solid red;
     padding-top: 10px;
 }

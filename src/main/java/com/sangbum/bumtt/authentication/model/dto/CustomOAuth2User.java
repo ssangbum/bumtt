@@ -1,5 +1,6 @@
 package com.sangbum.bumtt.authentication.model.dto;
 
+import com.sangbum.bumtt.user.model.dto.UserDTO;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 
@@ -7,15 +8,12 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Map;
 
-public class CustomOAuth2User implements OAuth2User{
+public class CustomOAuth2User implements OAuth2User {
 
-    private final OAuth2Response oAuth2Response;
-    private final String role;
+    private final UserDTO userDTO;
 
-    public CustomOAuth2User(OAuth2Response oAuth2Response, String role) {
-
-        this.oAuth2Response = oAuth2Response;
-        this.role = role;
+    public CustomOAuth2User(UserDTO userDTO) {
+        this.userDTO = userDTO;
     }
 
     @Override
@@ -33,7 +31,7 @@ public class CustomOAuth2User implements OAuth2User{
             @Override
             public String getAuthority() {
 
-                return role;
+                return userDTO.getUserCategoryName()    ;
             }
         });
 
@@ -43,11 +41,7 @@ public class CustomOAuth2User implements OAuth2User{
     @Override
     public String getName() {
 
-        return oAuth2Response.getName();
+        return userDTO.getUserName();
     }
 
-    public String getUserName() {
-
-        return oAuth2Response.getProvider() + " " + oAuth2Response.getProviderID();
-    }
 }

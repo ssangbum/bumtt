@@ -11,6 +11,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 
 import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest(classes = {
@@ -33,10 +34,10 @@ class UserServiceImplTest{
     public void findUserByUsername() {
 
         //given
-        String username = "박상범";
+        String username = "tkdjawlwhs@nate.com";
 
         //when
-        UserDTO user = userDAO.findByUsername(username);
+        UserDTO user = userDAO.findUserByUsername(username);
 
         //then
         assertNotNull(user);
@@ -44,18 +45,17 @@ class UserServiceImplTest{
 
     @Test
     @DisplayName("네이버를 통한 회원가입")
-    public void saveOAuth2User() {
+    public void createOAuth2User() {
 
         //given
         UserDTO user = new UserDTO();
         user.setUserType("NAVER");
         user.setUserName("박범상");
-        user.setUserEmail("sangbum@nate.com");
         user.setUserPhone("01062019811");
         user.setUserBirth("1997");
 
         //when
-        int result = userDAO.saveOAuth2User(user);
+        int result = userDAO.createOAuth2User(user);
 
         //then
         System.out.println(result);
@@ -69,7 +69,6 @@ class UserServiceImplTest{
         //given
         UserDTO user = new UserDTO();
         user.setUserName("관리자");
-        user.setUserEmail("tkdjawlwhs@naver.com");
         user.setUserPhone("01062029811");
 
         //when
@@ -79,4 +78,21 @@ class UserServiceImplTest{
         System.out.println(result);
         assertEquals(result, 1);
     }
+
+    @Test
+    @Transactional
+    public void createUser() {
+
+        //given
+        UserDTO userDTO = new UserDTO();
+        userDTO.setUserPwd("a33196417@");
+
+        //when
+        int result = userDAO.createUser(userDTO);
+
+        //then
+        System.out.println(result);
+        assertEquals(result, 1);
+    }
+
 }

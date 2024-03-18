@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sangbum.bumtt.content.model.dao.ContentDAO">
+
+    <insert id="createContent" parameterType="com.sangbum.bumtt.content.model.dto.ContentDTO">
+        INSERT
+          INTO TBL_CONTENT A
+             (
+               A.CONTENT_NO
+             , A.CONTENT_TITLE
+             , A.CONTENT_START_DATE
+             , A.CONTENT_COMMENT
+             , A.CONTENT_DIRECTOR
+             , A.CONTENT_ACTORS
+             , A.CONTENT_GRADE
+             , A.CONTENT_TYPE
+             , A.CONTENT_STATUS_YN
+             )
+        VALUES
+             (
+               SEQ_CONTENT_NO.NEXTVAL
+             , #{ contentTitle }
+             , #{ contentStartDate }
+             , #{ contentComment }
+             , #{ contentDirector }
+             , #{ contentActors }
+             , #{ contentGrade }
+             , #{ contentType }
+             , 'N'
+             )
+    </insert>
+
+    <insert id="createContentAttachment" parameterType="com.sangbum.bumtt.content.model.dto.ContentAttachmentDTO">
+        INSERT
+          INTO TBL_CONTENT_ATTACHMENT A
+             (
+               A.CONTENT_ATTACHMENT_NO
+             , A.CONTENT_ATTACHMENT_ORIGINAL_NAME
+             , A.CONTENT_ATTACHMENT_SAVE_NAME
+             , A.CONTENT_ATTACHMENT_SAVE_PATH
+             , A.CONTENT_ATTACHMENT_CATEGORY
+             )
+        VALUES
+             (
+               SEQ_CONTENT_ATTACHMENT_NO.NEXTVAL
+             , #{ contentAttachmentOriginalName }
+             , #{ contentAttachmentSaveName }
+             , #{ contentAttachmentSavePath }
+             , #{ contentAttachmentCategory }
+             )
+    </insert>
+</mapper>

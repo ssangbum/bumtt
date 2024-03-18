@@ -48,10 +48,7 @@ public class CustomUserDetailsService implements UserDetailsService {
         List<String> adminPermitList = new ArrayList<>();
         List<String> userPermitList = new ArrayList<>();
 
-        adminPermitList.add("/content/create");
-        adminPermitList.add("/content/management");
-        adminPermitList.add("/content/detail");
-        adminPermitList.add("/content/update");
+        adminPermitList.add("/admin/content");
 
         userPermitList.add("/user/purchase");
         userPermitList.add("/user/watch");

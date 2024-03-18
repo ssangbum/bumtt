@@ -26,7 +26,6 @@ class UserServiceImplTest{
 
     @Test
     public void initTest() {
-
         assertNotNull(userDAO);
     }
 
@@ -45,8 +44,43 @@ class UserServiceImplTest{
     }
 
     @Test
+    @DisplayName("네이버를 통한 회원가입")
+    public void createOAuth2User() {
+
+        //given
+        UserDTO user = new UserDTO();
+        user.setUserType("NAVER");
+        user.setUserName("박범상");
+        user.setUserPhone("01062019811");
+        user.setUserBirth("1997");
+
+        //when
+        int result = userDAO.createOAuth2User(user);
+
+        //then
+        System.out.println(result);
+        assertEquals(result,1);
+    }
+
+    @Test
+    @DisplayName("네이버 회원 업데이트")
+    public void updateOAuth2User() {
+
+        //given
+        UserDTO user = new UserDTO();
+        user.setUserName("관리자");
+        user.setUserPhone("01062029811");
+
+        //when
+        int result = userDAO.updateOAuth2User(user);
+
+        //then
+        System.out.println(result);
+        assertEquals(result, 1);
+    }
+
+    @Test
     @Transactional
-    @DisplayName("유저 생성")
     public void createUser() {
 
         //given

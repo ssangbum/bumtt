@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sangbum.bumtt.content.model.dao.ContentDAO">
+    <resultMap id="adminContentResultMap" type="com.sangbum.bumtt.content.model.dto.ContentDTO">
+        <id property="contentNo" column="CONTENT_NO"/>
+        <result property="contentTitle" column="CONTENT_TITLE"/>
+        <result property="contentStartDate" column="CONTENT_START_DATE"/>
+        <result property="contentStatusYn" column="CONTENT_STATUS_YN"/>
+        <result property="contentLike" column="CONTENT_LIKE"/>
+    </resultMap>
+    <resultMap id="contentResultMap" type="com.sangbum.bumtt.content.model.dto.ContentDTO">
+        <id property="contentNo" column="CONTENT_NO"/>
+        <result property="contentTitle" column="CONTENT_TITLE"/>
+        <result property="contentComment" column="CONTENT_COMMENT"/>
+        <result property="contentDirector" column="CONTENT_DIRECTOR"/>
+        <result property="contentActors" column="CONTENT_ACTORS"/>
+        <result property="contentGrade" column="CONTENT_GRADE"/>
+        <result property="contentType" column="CONTENT_TYPE"/>
+        <result property="contentStartDate" column="CONTENT_START_DATE"/>
+        <result property="contentStatusYn" column="CONTENT_STATUS_YN"/>
+        <result property="basicAttachmentSavePath" column="BASIC_ATTACHMENT_SAVE_PATH"/>
+        <result property="bannerAttachmentSavePath" column="BANNER_ATTACHMENT_SAVE_PATH"/>
+    </resultMap>
+    
+    <insert id="createContent" parameterType="com.sangbum.bumtt.content.model.dto.ContentDTO">
+        <selectKey resultType="int" keyProperty="contentNo"  order="AFTER">
+            SELECT
+                   SEQ_CONTENT_NO.CURRVAL
+              FROM DUAL
+        </selectKey>
+        INSERT
+        INTO TBL_CONTENT A
+            (
+               A.CONTENT_NO
+             , A.CONTENT_TITLE
+             , A.CONTENT_START_DATE
+             , A.CONTENT_COMMENT
+             , A.CONTENT_DIRECTOR
+             , A.CONTENT_ACTORS
+             , A.CONTENT_GRADE
+             , A.CONTENT_TYPE
+             , A.CONTENT_STATUS_YN
+             )
+        VALUES
+            (
+               SEQ_CONTENT_NO.NEXTVAL
+             , #{ contentTitle }
+             , #{ contentStartDate }
+             , #{ contentComment }
+             , #{ contentDirector }
+             , #{ contentActors }
+             , #{ contentGrade }
+             , #{ contentType }
+             , 'N'
+            )
+    </insert>
+
+    <insert id="createContentAttachment" parameterType="com.sangbum.bumtt.content.model.dto.ContentAttachmentDTO">
+        INSERT
+        INTO TBL_CONTENT_ATTACHMENT A
+            (
+               A.CONTENT_ATTACHMENT_NO
+             , A.CONTENT_ATTACHMENT_ORIGINAL_NAME
+             , A.CONTENT_ATTACHMENT_SAVE_NAME
+             , A.CONTENT_ATTACHMENT_SAVE_PATH
+             , A.CONTENT_ATTACHMENT_CATEGORY
+             , A.CONTENT_NO
+             )
+        VALUES
+            (
+               SEQ_CONTENT_ATTACHMENT_NO.NEXTVAL
+             , #{ contentAttachmentOriginalName }
+             , #{ contentAttachmentSaveName }
+             , #{ contentAttachmentSavePath }
+             , #{ contentAttachmentCategory }
+             , #{ contentNo }
+            )
+    </insert>
+    <select id="selectAllContentList" resultMap="adminContentResultMap">
+        SELECT
+               A.CONTENT_NO
+             , A.CONTENT_TITLE
+             , A.CONTENT_STATUS_YN
+             , REPLACE(TO_CHAR(TO_DATE(A.CONTENT_START_DATE, 'yyyy-MM-dd')), '/', '-') AS CONTENT_START_DATE
+             , (
+                 SELECT
+                        COUNT(*)
+                   FROM TBL_LIKE B
+                  WHERE A.CONTENT_NO = B.CONTENT_NO
+                    AND B.LIKE_YN = 'Y'
+                ) AS CONTENT_LIKE
+          FROM TBL_CONTENT A
+    </select>
+    <select id="selectContentByContentNo" parameterType="_int" resultMap="contentResultMap">
+        SELECT
+               A.CONTENT_NO
+             , A.CONTENT_TITLE
+             , CONCAT('20', REPLACE(TO_CHAR(TO_DATE(A.CONTENT_START_DATE, 'yyyy-MM-dd')), '/', '-')) AS CONTENT_START_DATE
+             , A.CONTENT_COMMENT
+             , A.CONTENT_DIRECTOR
+             , A.CONTENT_ACTORS
+             , A.CONTENT_GRADE
+             , A.CONTENT_TYPE
+             , A.CONTENT_STATUS_YN
+             , (SELECT
+                       B.CONTENT_ATTACHMENT_SAVE_PATH
+                  FROM TBL_CONTENT_ATTACHMENT B
+                 WHERE B.CONTENT_NO = #{ contentNo }
+                   AND B.CONTENT_ATTACHMENT_CATEGORY = 'basic') AS BASIC_ATTACHMENT_SAVE_PATH
+             , (SELECT
+                       B.CONTENT_ATTACHMENT_SAVE_PATH
+                  FROM TBL_CONTENT_ATTACHMENT B
+                 WHERE B.CONTENT_NO = #{ contentNo }
+                   AND B.CONTENT_ATTACHMENT_CATEGORY = 'banner') AS BANNER_ATTACHMENT_SAVE_PATH
+        FROM TBL_CONTENT A
+       WHERE A.CONTENT_NO = #{ contentNo }
+    </select>
+    <update id="updateContentStatusYnByContentNo" parameterType="map">
+        UPDATE
+               TBL_CONTENT A
+           SET
+        <if test='contentStatusYn == "Y"'>
+               A.CONTENT_STATUS_YN = 'N'
+        </if>
+        <if test='contentStatusYn == "N"'>
+               A.CONTENT_STATUS_YN = 'Y'
+        </if>
+         WHERE A.CONTENT_NO = #{ contentNo }
+    </update>
+</mapper>

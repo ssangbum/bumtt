@@ -81,8 +81,7 @@ public class SpringSecurityConfiguration {
                 .httpBasic((basic) -> basic.disable());
 
         http
-                .formLogin(Customizer.withDefaults()
-                );
+                .formLogin(Customizer.withDefaults());
 
         //auth config
         http

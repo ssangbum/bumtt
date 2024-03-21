@@ -9,6 +9,7 @@
 
 .content-bar {
     float: left;
+    width: 550px;
 }
 
 .home-logo {
@@ -42,7 +43,7 @@
 }
 
 .search-bar {
-    width: 800px;
+    width: 750px;
     border: 1px solid red;
     padding-top: 10px;
 }

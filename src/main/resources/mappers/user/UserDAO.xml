@@ -36,7 +36,7 @@
         WHERE A.USER_NAME = #{ username }
     </select>
 
-    <insert id="createUser" parameterType="com.sangbum.bumtt.user.model.dto.UserDTO">
+    <insert id="createUser" parameterType="com.sangbum.bumtt.user.model.dto.UserDTO" useGeneratedKeys="true">
         INSERT
           INTO TBL_USER A
              (
@@ -58,7 +58,7 @@
              )
     </insert>
 
-    <insert id="createOAuth2User" parameterType="com.sangbum.bumtt.user.model.dto.UserDTO">
+    <insert id="createOAuth2User" parameterType="com.sangbum.bumtt.user.model.dto.UserDTO" useGeneratedKeys="true">
         INSERT
           INTO TBL_USER A
              (

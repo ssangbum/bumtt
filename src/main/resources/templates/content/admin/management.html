@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" lang="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BumTT</title>
+    <link rel="stylesheet" th:href="@{/css/common.css}">
+    <link rel="stylesheet" th:href="@{/css/management.css }">
+    <script th:src="@{/javascript/management.js}" defer></script>
+</head>
+<body>
+    <div class="header" th:replace="~{/common/header::header}"></div>
+    <div class="contents-box">
+        <h2 class="contents-title">컨텐츠 관리</h2>
+        <button class="create-content-button" id="create-content">컨텐츠 추가</button>
+        <table class="content-list">
+            <thead>
+                <tr>
+                    <th class="content-column">번호</th>
+                    <th class="content-title">제목</th>
+                    <th class="content-column">좋아요</th>
+                    <th class="content-column">시청</th>
+                    <th class="content-column">상태</th>
+                    <th class="content-column">오픈일</th>
+                </tr>
+            </thead>
+            <tbody>
+                <th:block th:each="content : ${ contentList }">
+                    <tr class="content-info" id="content-info">
+                        <td class="content-column">[[${ content.contentNo }]]</td>
+                        <td class="content-title" id="content-title" th:onclick="contentDetail([[${content.contentNo}]])">[[${ content.contentTitle }]]</td>
+                        <td class="content-column">[[${ content.contentLike }]]</td>
+                        <td class="content-column"></td>
+                        <td class="content-column" th:onclick="updateContentStatus([[${content.contentNo}]], [[${ content.contentStatusYn }]])">
+                            <th:block th:if="${ content.contentStatusYn == 'Y'}">
+                                <div class="green-light"></div>
+                            </th:block>
+                            <th:block th:if="${ content.contentStatusYn == 'N'}">
+                                <div class="red-light"></div>
+                            </th:block>
+                        </td>
+                        <td class="content-column">[[${ content.contentStartDate }]]</td>
+                    </tr>
+                </th:block>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

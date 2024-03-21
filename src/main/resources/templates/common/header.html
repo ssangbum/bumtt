@@ -6,35 +6,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Title</title>
+    <script th:src="@{/javascript/header.js}" defer></script>
 </head>
 <body>
-    <nav class="navbar" th:fragment="header">
-        <div class="content-bar">
-            <img class="home-logo" th:src="@{../images/bumtt-logo.png}">
-            <ul class="nav-li-inline">
-                <li class="nav-li"><a th:href="@{/content/list/drama}">드라마</a></li>
-                <li class="nav-li"><a th:href="@{/content/list/movie}">영화</a></li>
-                <li class="nav-li"><a th:href="@{/content/list/animation}">애니메이션</a></li>
-                <th:block sec:authorize="hasRole('ADMIN')">
-                    <li class="nav-li"><a th:href="@{/admin/content}">컨텐츠 관리</a></li>
-                </th:block>
-            </ul>
-        </div>
-        <div class="search-bar">
-            <img class="search-content" th:src="@{../images/search-content.png}">
-        </div>
-        <div class="user-bar">
-            <ul>
-                <th:block sec:authorize="isAnonymous()">
-                    <li class="nav-li"><a th:href="@{/user/login}">로그인</a></li>
-                    <li class="nav-li"><a th:href="@{/user/signUp}">회원가입</a></li>
-                </th:block>
-                <th:block sec:authorize="isAuthenticated()">
-                    <li class="nav-li"><span sec:authentication="principal.username"></span></li>
-                    <li class="nav-li"><a th:href="@{/user/logout}">로그아웃</a></li>
-                </th:block>
-            </ul>
-        </div>
-    </nav>
+<nav class="navbar" th:fragment="header">
+    <div class="content-bar">
+        <img class="home-logo" id="home-logo" th:src="@{/images/bumtt-logo.png}">
+        <ul class="nav-li-inline">
+            <li class="nav-li"><a th:href="@{/content/list/drama}">드라마</a></li>
+            <li class="nav-li"><a th:href="@{/content/list/movie}">영화</a></li>
+            <li class="nav-li"><a th:href="@{/content/list/animation}">애니메이션</a></li>
+            <th:block sec:authorize="hasRole('ADMIN')">
+                <li class="nav-li"><a th:href="@{/content/admin/management}">컨텐츠 관리</a></li>
+            </th:block>
+        </ul>
+    </div>
+    <div class="search-bar">
+        <img class="search-content" th:src="@{/images/search-content.png}">
+    </div>
+    <div class="user-bar">
+        <ul>
+            <th:block sec:authorize="isAnonymous()">
+                <li class="nav-li"><a th:href="@{/user/login}">로그인</a></li>
+                <li class="nav-li"><a th:href="@{/user/signUp}">회원가입</a></li>
+            </th:block>
+            <th:block sec:authorize="isAuthenticated()">
+                <li class="nav-li"><span sec:authentication="principal.username"></span></li>
+                <li class="nav-li"><a th:href="@{/user/logout}">로그아웃</a></li>
+            </th:block>
+        </ul>
+    </div>
+</nav>
 </body>
 </html>

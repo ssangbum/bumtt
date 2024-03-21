@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" lang="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BumTT</title>
+    <link rel="stylesheet" th:href="@{/css/common.css}">
+    <link rel="stylesheet" th:href="@{/css/main.css }">
+    <script th:src="@{/javascript/main.js}" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
+</head>
+<body>
+    <div class="header" th:replace="~{/common/header::header}"></div>
+    <div class="banner">
+        <swiper-container class="mySwiper" navigation="true" pagination="true" keyboard="true" mousewheel="true" css-mode="true">
+            <swiper-slide>
+                <img id="banner-thumbnail" th:src="@{../images/dog.jpg}">
+            </swiper-slide>
+            <swiper-slide><img th:src="@{../images/sky.jpg}" alt=""></swiper-slide>
+<!--            <th:block th:each="content : ${bannerContents}">-->
+<!--                <swiper-slide>-->
+<!--                    <img class="banner-thumbnail" th:src="@{content.contentThumbnailPath}">-->
+<!--                </swiper-slide>-->
+<!--            </th:block>-->
+        </swiper-container>
+    </div>
+    <div class="contents">
+        <div class="contents-box">
+            <h1 class="contents-title">인기 컨텐츠</h1>
+            <div class="contents-list">
+                <div class="contents-thumbnail"></div>
+<!--                <th:block th:each="content : ${popularContents}">-->
+<!--                    <img class="contents-thumbnail" th:src="@{content.thumbnailPath}" value="${content.contentNo}">-->
+<!--                </th:block>-->
+            </div>
+        </div>
+        <div class="contents-box">
+            <h1 class="contents-title">이용자들의 추천작</h1>
+            <div class="contents-list">
+                <div class="contents-thumbnail"></div>
+<!--                <th:block th:each="content : ${favoriteContents}">-->
+<!--                    <img class="contents-thumbnail" th:src="@{content.thumbnailPath}" value="${content.contentNo}">-->
+<!--                </th:block>-->
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -12,7 +12,7 @@ spring:
     username: c##bumtt
     password: bumtt
 
-#oauth2 naver config
+  #oauth2 naver config
   security:
     oauth2:
       client:
@@ -40,7 +40,18 @@ spring:
 mybatis:
   mapper-locations: mappers/**/*.xml
 
-
+#s3
+cloud:
+  aws:
+    s3:
+      bucket: bumtt-s3-1
+    stack:
+      auto: false
+    region:
+      static: ap-northeast-2
+    credentials:
+      access-key: AKIAYS2NVIL5QOKDKFFR
+      secret-key: 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
 #jasypt:
 #  encryptor:
 #    bean: jasyptStringEncryptor

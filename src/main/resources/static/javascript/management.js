@@ -1,6 +1,6 @@
 document.getElementById("create-content").addEventListener("click", () => {
 
-    window.location.href = "/content/create";
+    window.location.href = "/content/admin/create";
 })
 
 function contentDetail(contentNo) {

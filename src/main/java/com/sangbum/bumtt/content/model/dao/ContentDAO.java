@@ -19,4 +19,10 @@ public interface ContentDAO {
     ContentDTO selectContentByContentNo(int contentNo);
 
     int updateContentStatusYnByContentNo(Map<String, Object> contentMap);
+
+    int updateContent(ContentDTO contentDTO);
+
+    void updateContentAttachment(ContentAttachmentDTO contentAttachmentDTO);
+
+    Map<String, String> selectContentAttachmentSaveNameByContentNo(int contentNo);
 }

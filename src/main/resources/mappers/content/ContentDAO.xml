@@ -23,10 +23,6 @@
         <result property="basicAttachmentSavePath" column="BASIC_ATTACHMENT_SAVE_PATH"/>
         <result property="bannerAttachmentSavePath" column="BANNER_ATTACHMENT_SAVE_PATH"/>
     </resultMap>
-    <resultMap id="contentAttachmentSaveNameMap" type="java.util.HashMap">
-        <result property="basic" column="BASIC_CONTENT_ATTACHMENT_SAVE_NAME"/>
-        <result property="banner" column="BANNER_CONTENT_ATTACHMENT_SAVE_NAME"/>
-    </resultMap>
     
     <insert id="createContent" parameterType="com.sangbum.bumtt.content.model.dto.ContentDTO">
         <selectKey resultType="int" keyProperty="contentNo"  order="AFTER">
@@ -131,42 +127,6 @@
         <if test='contentStatusYn == "N"'>
                A.CONTENT_STATUS_YN = 'Y'
         </if>
-         WHERE A.CONTENT_NO = #{ contentNo }
-    </update>
-    <update id="updateContent" parameterType="com.sangbum.bumtt.content.model.dto.ContentDTO">
-        UPDATE
-               TBL_CONTENT A
-           SET A.CONTENT_TITLE = #{ contentTitle }
-             , A.CONTENT_START_DATE = #{ contentStartDate }
-             , A.CONTENT_COMMENT = #{ contentComment }
-             , A.CONTENT_DIRECTOR = #{ contentDirector }
-             , A.CONTENT_ACTORS = #{ contentActors }
-             , A.CONTENT_GRADE = #{ contentGrade }
-             , A.CONTENT_TYPE = #{ contentType }
-         WHERE A.CONTENT_NO = #{ contentNo }
-    </update>
-    <select id="selectContentAttachmentSaveNameByContentNo" resultMap="contentAttachmentSaveNameMap">
-        SELECT
-               (SELECT
-                       CONTENT_ATTACHMENT_SAVE_NAME
-                  FROM TBL_CONTENT_ATTACHMENT
-                 WHERE CONTENT_ATTACHMENT_CATEGORY = 'basic'
-                   AND CONTENT_NO = #{ contentNo }) AS BASIC_CONTENT_ATTACHMENT_SAVE_NAME
-             , (SELECT
-                       CONTENT_ATTACHMENT_SAVE_NAME
-                  FROM TBL_CONTENT_ATTACHMENT
-                 WHERE CONTENT_ATTACHMENT_CATEGORY = 'banner'
-                   AND CONTENT_NO = #{ contentNo }) AS BANNER_CONTENT_ATTACHMENT_SAVE_NAME
-        FROM DUAL
-    </select>
-    <update id="updateContentAttachment" parameterType="com.sangbum.bumtt.content.model.dto.ContentAttachmentDTO">
-        UPDATE
-               TBL_CONTENT_ATTACHMENT A
-           SET
-               A.CONTENT_ATTACHMENT_ORIGINAL_NAME = #{ contentAttachmentOriginalName }
-             , A.CONTENT_ATTACHMENT_SAVE_NAME = #{ contentAttachmentSaveName }
-             , A.CONTENT_ATTACHMENT_SAVE_PATH = #{ contentAttachmentSavePath }
-             , A.CONTENT_ATTACHMENT_CATEGORY = #{ contentAttachmentCategory }
          WHERE A.CONTENT_NO = #{ contentNo }
     </update>
 </mapper>

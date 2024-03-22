@@ -12,7 +12,7 @@ function addActor() {
     newInput.setAttribute('placeholder', '배우 이름');
 
     const delBtn = document.createElement('img');
-    delBtn.setAttribute('src','/images/delete-btn.png');
+    delBtn.setAttribute('src','../images/delete-btn.png');
     delBtn.setAttribute('class', 'del-btn');
 
     actorBox.appendChild(newInput);
@@ -69,6 +69,6 @@ document.getElementById('content-create').addEventListener("keydown", evt => {
 
 document.getElementById('back-btn').addEventListener('click', () => {
 
-    window.location.href = "/content/admin/management";
+    window.location.href = "/content/management";
 
 });

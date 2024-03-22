@@ -77,25 +77,11 @@ public class ContentController {
         return mv;
     }
 
-    @PostMapping("/admin/update")
-    public String updateContent(@ModelAttribute ContentDTO contentDTO, @RequestParam("basicThumbnail") MultipartFile basicThumbnail,
-                                @RequestParam("bannerThumbnail") MultipartFile bannerThumbnail) throws IOException {
+    @PostMapping("/update/")
+    public String updateContent(@ModelAttribute ContentDTO contentDTO, @RequestParam("basicThumbnail") MultipartFile basicThumbnail, @RequestParam("bannerThumbnail") MultipartFile bannerThumbnail) {
 
-        Map<String, MultipartFile> fileMap = new HashMap<>();
 
-        if(!basicThumbnail.isEmpty()) {
-
-            fileMap.put("basic", basicThumbnail);
-        }
-
-        if (!bannerThumbnail.isEmpty()) {
-
-            fileMap.put("banner", bannerThumbnail);
-        }
-
-        contentService.updateContent(contentDTO, fileMap);
-
-        return "redirect:/content/admin/management";
+        return "";
     }
 
     @PostMapping("/update/contentStatus")

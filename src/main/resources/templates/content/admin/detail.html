@@ -12,11 +12,10 @@
 <body>
     <div class="header" th:replace="~{/common/header::header}"></div>
     <div class="contents-box">
-        <form method="post" action="/content/admin/update" id="content-create" enctype="multipart/form-data">
-            <h2 class="contents-title">컨텐츠 상세</h2>
+        <form method="post" action="/content/update" id="content-create" enctype="multipart/form-data">
+            <h2 class="contents-title">컨텐츠 추가</h2>
             <div class="contents-container" id="contents-container">
                 <label>컨텐츠 제목</label>
-                <input type="text" style="display: none" name="contentNo" th:value="${ content.contentNo }">
                 <input type="text" class="content-input1" name="contentTitle" placeholder="컨텐츠 제목" th:value="${ content.contentTitle }">
                 <label>컨텐츠 종류</label>
                 <select class="content-input1" name="contentType" th:value="${ content.contentType }">
@@ -43,7 +42,7 @@
                 <button type="button" class="add-actor" id="add-actor" onclick="addActor()">출연진 추가</button>
                 <div class="actor-container" id="actor-container">
                     <input type="text" class="content-input3" name="contentActors" th:value="${ actorsList.get(0) }">
-                    <th:block th:each="actor,actorStat : ${ actorsList }">
+                    <th:block th:each="actor,actorStat : ${actorsList}">
                         <div th:if="${ actorStat.index != 0 }">
                             <div class="actor-box">
                                 <input type="text" class="content-input3" name="contentActors" th:value="${ actor }">

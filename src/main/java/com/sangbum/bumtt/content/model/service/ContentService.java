@@ -3,7 +3,6 @@ package com.sangbum.bumtt.content.model.service;
 import com.sangbum.bumtt.content.model.dto.ContentDTO;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
@@ -19,6 +18,4 @@ public interface ContentService {
     ContentDTO selectContentByContentNo(int contentNo);
 
     CompletableFuture<String> updateContentStatusYnByContentNo(Map<String, Object> data) throws ExecutionException, InterruptedException;
-
-    void updateContent(ContentDTO contentDTO, Map<String, MultipartFile> fileMap) throws IOException;
 }

@@ -130,47 +130,4 @@ class ContentServiceImplTest {
         System.out.println(contentFuture.get());
         assertEquals(1, contentFuture.get());
     }
-
-    @Test
-    @Transactional
-    @DisplayName("컨텐츠 업데이트")
-    public void updateContent() {
-
-        //given
-        ContentDTO contentDTO = new ContentDTO();
-        contentDTO.setContentNo(9);
-        contentDTO.setContentTitle("멱살");
-        contentDTO.setContentStartDate("2024-03-01");
-        contentDTO.setContentComment("생략");
-        contentDTO.setContentDirector("호이");
-        contentDTO.setContentActors("박상범, 박상범, 박상범");
-        contentDTO.setContentGrade("19세 미만 이용불가");
-        contentDTO.setContentType("영화");
-
-        //when
-        int result = contentDAO.updateContent(contentDTO);
-
-        //then
-        System.out.println(result);
-        assertNotEquals(result, 9);
-    }
-
-    @Test
-    @DisplayName("컨텐츠 번호의 기본사진, 배너사진 저장 이름 가져오기")
-    public  void selectContentAttachmentSaveName() {
-
-        //given
-        int contentNo = 9;
-
-        //when
-        Map<String, String> saveNameMap = contentDAO.selectContentAttachmentSaveNameByContentNo(contentNo);
-
-        //then
-        System.out.println(saveNameMap);
-
-        for(String key : saveNameMap.keySet()) {
-            System.out.println(key +": "+saveNameMap.get(key));
-        }
-        assertEquals(saveNameMap.size(), 2);
-    }
 }
